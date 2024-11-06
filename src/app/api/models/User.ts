@@ -1,18 +1,24 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IUser extends Document {
+  first_name?: string | null;
+  last_name?: string | null;
+  avatar?: Buffer | null;
   username: string;
-  email: string;
+  phone: string;
   password: string;
   createdAt: Date;
   role: 'admin' | 'user';
 }
 
 const userSchema = new Schema<IUser>({
+  first_name: { type: String, required: false },
+  last_name: { type: String, required: false },
   username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
+  phone: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  avatar: { type: Buffer, required: false },
+  createdAt: { type: Date, default: Date.now, immutable: true },
   role: { type: String, required: true, enum: ['admin', 'user'] },
 }, { versionKey: false });
 

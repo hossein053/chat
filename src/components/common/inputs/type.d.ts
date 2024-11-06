@@ -1,7 +1,7 @@
 import { ButtonProps } from "@nextui-org/react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
-export interface TextProps {
+export interface TextProps extends React.InputHTMLAttributes<HTMLInputElement> {
     className?: string;
     type?: string;
     name: string;
@@ -23,9 +23,10 @@ export interface TextareaProps {
 }
 
 export interface ImageUploaderProps {
-    className: string;
+    className?: string;
     name?: string;
     onChange?: (value: any) => void;
+    placeholder: ReactNode
 }
 
 export interface SelectProps {

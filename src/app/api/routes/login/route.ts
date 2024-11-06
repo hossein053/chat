@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import connectDB from '@/app/api/library/db';
 
 const loginSchema = Yup.object().shape({
-    identifier: Yup.string().required('نام کاربری یا ایمیل الزامی است'),
+    identifier: Yup.string().required('نام کاربری یا شماره موبایل الزامی است'),
     password: Yup.string().required('کلمه عبور الزامی است'),
 });
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
         await loginSchema.validate({ identifier, password }, { abortEarly: false });
 
         const user: IUser | null = await User.findOne({
-            $or: [{ email: identifier.toLowerCase() }, { username: identifier.toLowerCase() }],
+            $or: [{ phone: identifier.toLowerCase() }, { username: identifier.toLowerCase() }],
         });
 
         if (!user) {
@@ -45,11 +45,14 @@ export async function POST(req: NextRequest) {
             message: 'ورود موفقیت‌آمیز بود',
             data: {
                 userId: user._id,
+                token,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                avatar: user.avatar,
                 username: user.username,
-                email: user.email,
-                role: user.role,
+                phone: user.phone,
                 created_at: user.createdAt,
-                token
+                role: user.role,
             }
         }, { status: 200 });
 

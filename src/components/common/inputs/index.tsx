@@ -6,7 +6,7 @@ import Image from "next/image";
 import React, { useState } from 'react';
 
 
-export const Text: React.FC<TextProps> = ({ className, type, name, title, defaultValue, onChange, value, icon }) => {
+export const Text: React.FC<TextProps> = ({ className, type, name, title, defaultValue, onChange, value, icon ,...props }) => {
     return (
         <div className={'inputs ' + className}>
             <input
@@ -21,6 +21,7 @@ export const Text: React.FC<TextProps> = ({ className, type, name, title, defaul
                 readOnly
                 value={value}
                 onClick={(e: any) => { e.target.readOnly = false }}
+                {...props}
             />
             <label htmlFor={name} className='label-peer'>
                 {icon && <span className="icon">{icon}</span>}
@@ -51,11 +52,11 @@ export const Textarea: React.FC<TextareaProps> = ({ className, name, title, defa
     );
 };
 
-export const File: React.FC<ImageUploaderProps> = ({ className, name, onChange }) => {
+export const File: React.FC<ImageUploaderProps> = ({ className, name, onChange, placeholder }) => {
     const [image, setImage] = useState<File | null>(null);
     return (
         <div className={className}>
-            <div className="relative bg-white outline-none border-b-2 overflow-hidden border-b-purple_55 rounded-lg p-2.5 row h-[150px]">
+            <div className="relative bg-white outline-none overflow-hidden rounded-lg row h-full">
                 <input
                     type="file"
                     name={name}
@@ -70,14 +71,23 @@ export const File: React.FC<ImageUploaderProps> = ({ className, name, onChange }
                         }
                     }}
                 />
-                {!image && <p className="text-center">Drag or click the photo here to select.</p>}
+                {!image &&
+                    <div>
+                        {placeholder
+                            ?
+                            placeholder
+                            :
+                            <p className="text-center">Drag or click the photo here to select.</p>
+                        }
+                    </div>
+                }
                 {image &&
                     <Image
                         src={URL.createObjectURL(image)}
                         alt=""
-                        width={1000}
-                        height={0}
-                        className="w-full h-full object-contain"
+                        width={150}
+                        height={150}
+                        className="w-full h-full object-cover"
                     />}
             </div>
         </div>

@@ -32,20 +32,21 @@ body {
         }
     }
 
-    .window-chat{
+    .window-chat {
         background: url('../images/clouds-twilight-times.jpg');
-        background-repeat: repeat;
-        background-size: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
+
     .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
-      
+
         &::-webkit-scrollbar {
-          display: none;
-          justify-content: flex-start;
+            display: none;
+            justify-content: flex-start;
         }
-      }
+    }
 }
 
 .inputs {
@@ -59,18 +60,28 @@ body {
         }
 
         &:not(:placeholder-shown)~.label-peer {
-            @apply -top-3 text-xs rounded-md text-blue-700 px-2 gap-x-1.5;
+            @apply -top-3 text-xs rounded-md text-blue-700 px-2 md:gap-x-1.5 gap-x-[2px];
 
             .icon {
-                @apply start-2 top-3;
+                @apply start-2 top-3  w-4 h-4;
+
+                svg {
+                    width: 15px;
+                    height: 15px;
+                }
             }
         }
 
         &:focus~.label-peer {
-            @apply -top-3 text-xs rounded-md text-blue-700 px-2 gap-x-1.5;
+            @apply -top-3 text-xs rounded-md text-blue-700 px-2 md:gap-x-1.5 gap-x-[2px];
 
             .icon {
-                @apply start-2 top-3;
+                @apply start-2 top-3  w-4 h-4;
+
+                svg {
+                    width: 15px;
+                    height: 15px;
+                }
             }
         }
     }

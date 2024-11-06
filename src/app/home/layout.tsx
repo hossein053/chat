@@ -5,8 +5,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <main className="grid grid-cols-12 w-full h-full">
-            {children}
-            <div className="bg-white h-full col-span-2">
+            <div className="lg:col-span-10 md:col-span-9 md:block hidden">
+                {children}
+            </div>
+            <div className="bg-white h-full lg:col-span-2 md:col-span-3 col-span-12">
                 <ContactList />
             </div>
         </main>

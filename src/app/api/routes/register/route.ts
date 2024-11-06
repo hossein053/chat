@@ -5,20 +5,21 @@ import * as Yup from 'yup';
 import connectDB from '@/app/api/library/db';
 import { validateRegister } from '@/app/api/validations/register';
 
-
 export async function POST(req: NextRequest) {
     await connectDB();
 
     try {
         const formData = await req.formData();
-        const username = formData.get('username')?.toString() || '';
-        const email = formData.get('email')?.toString() || '';
-        const password = formData.get('password')?.toString() || '';
+        const body = Object.fromEntries(formData);
 
-        await validateRegister.validate({ username, email, password }, { abortEarly: false });
+        const username = body.username as string;
+        const phone = body.phone as string;
+        const password = body.password as string;
+
+        await validateRegister.validate({ username, phone, password }, { abortEarly: false });
 
         const existingUser = await User.findOne({
-            $or: [{ email: email.toLowerCase() }, { username: username.toLowerCase() }]
+            $or: [{ phone: phone.toLowerCase() }, { username: username.toLowerCase() }],
         });
 
         if (existingUser) {
@@ -28,18 +29,21 @@ export async function POST(req: NextRequest) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser: IUser = new User({
+            first_name: null,
+            last_name: null,
+            avatar: null,
             username: username.toLowerCase(),
-            email: email.toLowerCase(),
+            phone: phone.toLowerCase(),
             password: hashedPassword,
             role: 'user',
         });
 
         await newUser.save();
 
-        return NextResponse.json({ message: 'ثبت نام با موفقیت انجام شد', status: 201 }, { status: 201 });
+        return NextResponse.json({ message: 'ثبت نام با موفقیت انجام شد' }, { status: 201 });
 
     } catch (error) {
-
+        console.error('Error:', error);  // لاگ کردن ارور برای مشاهده جزئیات
         if (error instanceof Yup.ValidationError) {
             return NextResponse.json({ message: error.errors }, { status: 400 });
         }
