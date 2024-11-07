@@ -12,11 +12,11 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
 
 
     if (!user || 'status' in user) {
-        return NextResponse.json({ message: 'Unauthorized access' }, { status: 401 });
+        return NextResponse.json({ message: 'دسترسی غیرمجاز' }, { status: 401 });
     }
 
     if (!userId) {
-        return NextResponse.json({ message: 'User ID is missing' }, { status: 400 });
+        return NextResponse.json({ message: 'شناسه کاربری وجود ندارد' }, { status: 400 });
     }
 
     try {
@@ -30,7 +30,6 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
 
         return NextResponse.json({ messages }, { status: 200 });
     } catch (error) {
-        console.error('Error retrieving messages:', error);
-        return NextResponse.json({ message: 'Error retrieving messages' }, { status: 500 });
+        return NextResponse.json({ message: 'خطا در بازیابی پیام ها' }, { status: 500 });
     }
 }

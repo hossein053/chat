@@ -11,8 +11,9 @@ export async function POST(request: NextRequest) {
         const message = formData.get('message')?.toString() || '';
 
         if (!senderId || !receiverId || !message) {
-            return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
+            return NextResponse.json({ error: 'داده نامعتبر' }, { status: 400 });
         }
+        
         const newMessage = new Message({
             sender: senderId,
             receiver: receiverId,
@@ -22,9 +23,8 @@ export async function POST(request: NextRequest) {
 
         await newMessage.save();
 
-        return NextResponse.json({ success: true, message: 'Message sent' });
+        return NextResponse.json({ success: true });
     } catch (error) {
-        console.error(error);
-        return NextResponse.json({ error: 'Failed to send message' }, { status: 500 });
+        return NextResponse.json({ error: 'پیام ارسال نشد' }, { status: 500 });
     }
 }

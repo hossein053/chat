@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <main className="grid grid-cols-12 w-full h-full relative">
-            <div className="lg:col-span-10 md:col-span-9 md:block hidden">
+            <div className="lg:col-span-10 md:col-span-9 md:block hidden window-chat">
                 {children}
             </div>
             <div className="bg-white dark:bg-dark-background h-full lg:col-span-2 md:col-span-3 col-span-12">

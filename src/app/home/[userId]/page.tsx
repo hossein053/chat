@@ -10,7 +10,7 @@ export default function Page(context: context) {
     const { params: { userId } } = context;
 
     return (
-        <div className="bg-white h-full w-full flex flex-col window-chat">
+        <div className="bg-white h-full w-full flex flex-col">
             <div className="h-[85vh] max-h-[85vh] p-2">
                 <GetListMessage _id={userId} />
             </div>

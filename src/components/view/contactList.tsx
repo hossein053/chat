@@ -3,14 +3,12 @@
 import { useUser } from '@/context/UserContext';
 import { API } from '@/services/api';
 import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArchiveAdd, HambergerMenu, Moon, Setting2 } from 'iconsax-react';
+import { AnimatePresence } from 'framer-motion';
+import { HambergerMenu } from 'iconsax-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Sidebar } from './sidebar';
-import Image from 'next/image';
-import { ThemeSwitch } from './themeSwitch';
-import defalt_profile from '@/assets/images/gold-user.png'
+
 import { useTheme } from '@/hooks/useTheme';
 interface Contact {
     _id: string;
@@ -77,40 +75,7 @@ export const ContactList = () => {
             </div>
             <AnimatePresence>
                 {showSidebar &&
-                    <Sidebar onclick={() => setShowSidebar(!showSidebar)}>
-                        <div className='flex flex-col p-3'>
-                            <div className='flex flex-col justify-center items-center w-full border-b-2 pb-3'>
-                                <Image
-                                    alt='profile'
-                                    src={defalt_profile}
-                                    width={75}
-                                    height={75}
-                                    className='rounded-full'
-                                />
-                                <p className='pt-2 text-base font-medium'>{user?.username}</p>
-                                <p className='pt-2 text-base font-medium'>{user?.phone}</p>
-                            </div>
-                            <div className='flex items-end flex-col pt-3'>
-                                <Link href={'/home/' + user?.userId}>
-                                    <div className='row-end gap-x-2 py-2 w-full cursor-pointer'>
-                                        <p className='text-base font-medium'>پیام های ذخیره شده</p>
-                                        <ArchiveAdd size={22} color={theme === 'dark' ? "#D5D4DF" : '#394A6C'} />
-                                    </div>
-                                </Link>
-                                <div className='row-end gap-x-2 py-2 w-full cursor-pointer'>
-                                    <p className='text-base font-medium'>تنظیمات</p>
-                                    <Setting2 size={22} color={theme === 'dark' ? "#D5D4DF" : '#394A6C'} />
-                                </div>
-                                <div className='row-between gap-x-2 py-2 w-full cursor-pointer'>
-                                    <ThemeSwitch />
-                                    <div className='row-end gap-x-2'>
-                                        <p className='text-base font-medium'>حالت شب</p>
-                                        <Moon size={22} color={theme === 'dark' ? "#D5D4DF" : '#394A6C'} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Sidebar>
+                    <Sidebar onclick={() => setShowSidebar(!showSidebar)}/>
                 }
             </AnimatePresence>
         </div>
