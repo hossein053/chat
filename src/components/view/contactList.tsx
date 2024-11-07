@@ -10,9 +10,13 @@ import { useState, useEffect } from 'react';
 import { Sidebar } from './sidebar';
 
 import { useTheme } from '@/hooks/useTheme';
+import image from '@/assets/images/gold-user.png';
+import { OrganizeImage } from '../common/image';
 interface Contact {
     _id: string;
     username: string;
+    phone: string;
+    avatar: string;
 }
 
 export const ContactList = () => {
@@ -25,8 +29,8 @@ export const ContactList = () => {
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const response = await API('/users');
-                setContacts(response)
+                const response = await API('/contact/list');
+                setContacts(response?.contacts)
             } catch (error) {
                 console.error('Error fetching contacts:', error);
             } finally {
@@ -59,23 +63,31 @@ export const ContactList = () => {
                         <p className='text-sm font-semibold text-gray-400'>در حال پردازش ...</p>
                     </div>
                     :
-                    contacts?.map((contact: any, i) => user?.userId !== contact?._id && (
-                        <div
-                            className={classNames("overflow-hidden text-center py-3 font-semibold text-lg border-b-2 border-b-black mt-2 rounded-lg cursor-pointer hover:text-white hover:bg-blue-400", {
-                                'bg-blue-400 text-white': userActive === contact?._id
-                            })}
-                            key={i}
-                            onClick={() => setUserActive(contact?._id)}
-                        >
-                            <Link href={`/home/${contact?._id}`}>
-                                {contact?.username}
-                            </Link>
-                        </div>
+                    contacts?.map((contact, i) => user?.userId !== contact?._id && (
+                        <Link href={`/home/${contact?._id}`} key={i}>
+                            <div
+                                className={classNames("mt-2 pb-1 cursor-pointer row-start gap-x-2 border-b-2", {
+                                    'bg-blue-400 text-white': userActive === contact?._id
+                                })}
+                                onClick={() => setUserActive(contact?._id)}
+                            >
+                                <OrganizeImage
+                                    alt={contact._id}
+                                    src={contact.avatar}
+                                    fallbackSrc={image}
+                                    width={50}
+                                    height={50}
+                                    className='rounded-full'
+                                    aspectRatio='1/1'
+                                />
+                                <p className='text-center font-semibold text-lg text-ellipsis overflow-hidden whitespace-nowrap'>{contact?.username}</p>
+                            </div>
+                        </Link>
                     ))}
             </div>
             <AnimatePresence>
                 {showSidebar &&
-                    <Sidebar onclick={() => setShowSidebar(!showSidebar)}/>
+                    <Sidebar onclick={() => setShowSidebar(!showSidebar)} />
                 }
             </AnimatePresence>
         </div>

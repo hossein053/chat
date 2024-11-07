@@ -4,6 +4,7 @@ import { ImageUploaderProps, PropsButton, SelectProps, TextareaProps, TextProps 
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import React, { useState } from 'react';
+import { OrganizeImage } from "../image";
 
 
 export const Text: React.FC<TextProps> = ({ className, type, name, title, defaultValue, onChange, value, icon ,...props }) => {
@@ -82,7 +83,7 @@ export const File: React.FC<ImageUploaderProps> = ({ className, name, onChange, 
                     </div>
                 }
                 {image &&
-                    <Image
+                    <OrganizeImage
                         src={URL.createObjectURL(image)}
                         alt=""
                         width={150}

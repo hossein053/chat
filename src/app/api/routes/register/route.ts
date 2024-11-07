@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
             phone: phone.toLowerCase(),
             password: hashedPassword,
             role: 'user',
+            contacts: [],
         });
 
         await newUser.save();
@@ -43,7 +44,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: 'ثبت نام با موفقیت انجام شد' }, { status: 201 });
 
     } catch (error) {
-        console.error('Error:', error);  // لاگ کردن ارور برای مشاهده جزئیات
+
         if (error instanceof Yup.ValidationError) {
             return NextResponse.json({ message: error.errors }, { status: 400 });
         }

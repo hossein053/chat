@@ -7,6 +7,7 @@ export interface IUser extends Document {
   username: string;
   phone: string;
   password: string;
+  contacts: mongoose.Types.ObjectId[]; 
   createdAt: Date;
   role: 'admin' | 'user';
 }
@@ -18,9 +19,9 @@ const userSchema = new Schema<IUser>({
   phone: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   avatar: { type: Buffer, required: false },
+  contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   createdAt: { type: Date, default: Date.now, immutable: true },
   role: { type: String, required: true, enum: ['admin', 'user'] },
 }, { versionKey: false });
-
 
 export const User = mongoose.models.User || mongoose.model<IUser>('User', userSchema);

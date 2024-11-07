@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb://127.0.0.1:27017/production';
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/chat';
 
 if (!MONGODB_URI) {
   throw new Error('MONGODB_URI is not defined in environment variables');

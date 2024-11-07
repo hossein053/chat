@@ -9,6 +9,7 @@ import { ThemeSwitch } from './themeSwitch';
 import { useTheme } from '@/hooks/useTheme';
 import { useUser } from '@/context/UserContext';
 import defalt_profile from '@/assets/images/gold-user.png'
+import { OrganizeImage } from '../common/image';
 
 interface Props {
     onclick?: () => void;
@@ -41,7 +42,7 @@ export const Sidebar: React.FC<Props> = ({ onclick }) => {
             >
                 <div className='flex flex-col p-3'>
                     <div className='flex flex-col justify-center items-center w-full border-b-2 pb-3'>
-                        <Image
+                        <OrganizeImage
                             alt='profile'
                             src={defalt_profile}
                             width={75}
