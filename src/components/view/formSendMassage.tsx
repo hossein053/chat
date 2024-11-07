@@ -36,7 +36,7 @@ export const FormSendMessage = ({ _id }: { _id: string }) => {
     };
 
     return (
-        <form onSubmit={sendMessage} className='w-10/12 mx-auto flex gap-x-2'>
+        <form onSubmit={sendMessage} className='w-10/12 mx-auto flex gap-x-2 relative z-10'>
             <input
                 type="text"
                 value={message}

@@ -6,17 +6,16 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background_black: '#00000095',
-        purple_25: '#7E7BB9',
-        purple_55: '#6A679E',
-        purple_75: '#4C489D',
-        primary: '#F5F5F5',
-        primary_50: '#2ca9bc',
-        secondary: '#2D333A',
-        background: '#F1F1F1',
+        dark:{
+          background:'#17212B',
+          primary: '#D5D4DF',
+        },
+        background:'#fff',
+        primary: '#394A6C',
       },
       container: {
         center: true,

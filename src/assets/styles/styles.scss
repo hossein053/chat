@@ -33,9 +33,11 @@ body {
     }
 
     .window-chat {
-        background: url('../images/clouds-twilight-times.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
+        @apply bg-[url('../images/clouds-twilight-times.jpg')] bg-no-repeat bg-cover relative;
+
+        &::after {
+            @apply absolute content-[''] w-full h-full top-0 left-0 right-0 bottom-0 dark:bg-[#000000a0];
+        }
     }
 
     .no-scrollbar {
@@ -46,6 +48,10 @@ body {
             display: none;
             justify-content: flex-start;
         }
+    }
+
+    p {
+        @apply text-primary dark:text-dark-primary;
     }
 }
 
@@ -63,7 +69,7 @@ body {
             @apply -top-3 text-xs rounded-md text-blue-700 px-2 md:gap-x-1.5 gap-x-[2px];
 
             .icon {
-                @apply start-2 top-3  w-4 h-4;
+                @apply start-2 top-3 w-4 h-4;
 
                 svg {
                     width: 15px;
@@ -76,7 +82,7 @@ body {
             @apply -top-3 text-xs rounded-md text-blue-700 px-2 md:gap-x-1.5 gap-x-[2px];
 
             .icon {
-                @apply start-2 top-3  w-4 h-4;
+                @apply start-2 top-3 w-4 h-4;
 
                 svg {
                     width: 15px;

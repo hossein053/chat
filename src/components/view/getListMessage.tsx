@@ -68,7 +68,7 @@ export const GetListMessage = ({ _id }: { _id: string }) => {
     if (loading) return <div>Loading messages...</div>;
 
     return (
-        <div className='w-10/12 mx-auto overflow-hidden h-full'>
+        <div className='w-10/12 mx-auto overflow-hidden h-full relative z-10'>
             {messages?.length
                 ?
                 <div className='overflow-y-scroll h-full w-full no-scrollbar'>
