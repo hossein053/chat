@@ -56,7 +56,7 @@ export const ContactList = () => {
                     color={theme === 'dark' ? "#D5D4DF" : '#394A6C'}
                 />
             </div>
-            <div className="p-3 h-[calc(100vh-64px)] overflow-y-scroll no-scrollbar">
+            <div className="py-3 h-[calc(100vh-64px)] overflow-y-scroll no-scrollbar">
                 {loading
                     ?
                     <div className='h-full row'>
@@ -66,8 +66,8 @@ export const ContactList = () => {
                     contacts?.map((contact, i) => user?.userId !== contact?._id && (
                         <Link href={`/home/${contact?._id}`} key={i}>
                             <div
-                                className={classNames("mt-2 pb-1 cursor-pointer row-start gap-x-2 border-b-2", {
-                                    'bg-blue-400 text-white': userActive === contact?._id
+                                className={classNames("mt-2 py-1 px-3 cursor-pointer row-start gap-x-2 border-b-2", {
+                                    'bg-primary_2 dark:bg-dark-primary_2 text-white': userActive === contact?._id
                                 })}
                                 onClick={() => setUserActive(contact?._id)}
                             >
@@ -80,7 +80,9 @@ export const ContactList = () => {
                                     className='rounded-full'
                                     aspectRatio='1/1'
                                 />
-                                <p className='text-center font-semibold text-lg text-ellipsis overflow-hidden whitespace-nowrap'>{contact?.username}</p>
+                                <p className={classNames('text-center font-semibold text-lg text-ellipsis overflow-hidden whitespace-nowrap', {
+                                    'text-white': userActive === contact?._id
+                                })}>{contact?.username}</p>
                             </div>
                         </Link>
                     ))}

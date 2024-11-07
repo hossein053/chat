@@ -13,9 +13,11 @@ const config: Config = {
         dark:{
           background:'#17212B',
           primary: '#D5D4DF',
+          primary_2:'#2B5278'
         },
         background:'#fff',
         primary: '#394A6C',
+        primary_2:'#419FD9'
       },
       container: {
         center: true,

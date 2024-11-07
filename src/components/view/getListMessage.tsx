@@ -85,7 +85,7 @@ export const GetListMessage = ({ _id }: { _id: string }) => {
                 </div>
                 :
                 <div className='h-full w-full flex justify-center items-center'>
-                    <div className='bg-white p-3 rounded-xl'>
+                    <div className='bg-white dark:bg-dark-background p-3 rounded-xl'>
                         <p className='text-center'>هنوز پیامی در اینجا وجود ندارد...</p>
                         <p className='text-center'>پیامی ارسال کنید</p>
                     </div>
