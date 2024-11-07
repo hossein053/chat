@@ -20,7 +20,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         if (cooke) {
             setUser(JSON.parse(cooke))
         }
-    }, [])
+    }, [userActive])
 
     return (
         <UserContext.Provider value={{ user, setUserActive, userActive }}>

@@ -5,9 +5,11 @@ import { PasswordCheck, UserSquare } from 'iconsax-react';
 import Link from 'next/link';
 import { ActionApi } from '@/library/utils';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@/context/UserContext';
 
 export default function Page() {
-    const { push } = useRouter()
+    const { push } = useRouter();
+    const { setUserActive } = useUser()
     const handler = async (data: FormData) => {
         const response = await fetch('http://localhost:3000/api/routes/login', {
             method: 'POST',
@@ -16,7 +18,11 @@ export default function Page() {
 
         const result = await response.json();
         ActionApi(result)
-        push('/home')
+        if (response.status === 200) {
+            setUserActive(result?.data)
+            push('/home')
+        }
+
     }
     return (
         <main className='w-full'>
