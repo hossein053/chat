@@ -56,17 +56,17 @@ body {
 }
 
 .inputs {
-    @apply relative row-start bg-white rounded-lg p-3;
+    @apply relative row-start bg-background rounded-lg p-3;
 
     .peer {
-        @apply w-full outline-none bg-white text-base text-black;
+        @apply w-full outline-none bg-transparent text-base text-black;
 
         &::placeholder {
             @apply text-transparent;
         }
 
         &:not(:placeholder-shown)~.label-peer {
-            @apply -top-3 text-xs rounded-md text-blue-700 px-2 md:gap-x-1.5 gap-x-[2px];
+            @apply -top-3 text-xs rounded-md text-primary dark:text-dark-primary px-2 md:gap-x-1.5 gap-x-[2px];
 
             .icon {
                 @apply start-2 top-3 w-4 h-4;
@@ -79,7 +79,7 @@ body {
         }
 
         &:focus~.label-peer {
-            @apply -top-3 text-xs rounded-md text-blue-700 px-2 md:gap-x-1.5 gap-x-[2px];
+            @apply -top-3 text-xs rounded-md text-primary dark:text-dark-primary px-2 md:gap-x-1.5 gap-x-[2px];
 
             .icon {
                 @apply start-2 top-3 w-4 h-4;
@@ -93,7 +93,7 @@ body {
     }
 
     .label-peer {
-        @apply absolute start-2 top-3 text-sm text-blue-700 transition-all row gap-x-3;
+        @apply absolute start-2 top-3 text-sm text-primary dark:text-dark-primary transition-all row gap-x-3;
 
         .icon {
             @apply w-5 h-5;

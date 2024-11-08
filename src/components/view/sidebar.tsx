@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { ArchiveAdd, Moon, Setting2 } from 'iconsax-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { ThemeSwitch } from './themeSwitch';

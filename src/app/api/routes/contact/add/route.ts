@@ -44,7 +44,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: 'مخاطب با موفقیت اضافه شد' }, { status: 201 });
 
     } catch (error) {
-        console.log(error)
         if (error instanceof Yup.ValidationError) {
             return NextResponse.json({ message: error.errors }, { status: 400 });
         }
