@@ -16,7 +16,7 @@ interface CustomImageProps {
     style?: React.CSSProperties
 }
 
-export const OrganizeImage: React.FC<CustomImageProps> = React.memo(({ aspectRatio, className, height, width, src, alt, fallbackSrc, style, ...props }) => {
+export const OrganizeImage: React.FC<CustomImageProps> = React.memo(({ aspectRatio, className, height, width, src, alt, fallbackSrc, ...props }) => {
     const [imgSrc, setImgSrc] = useState<string | StaticImageData>(src || fallbackSrc||'');
 
     useEffect(() => {
@@ -43,7 +43,6 @@ export const OrganizeImage: React.FC<CustomImageProps> = React.memo(({ aspectRat
             src={imgSrc as string | StaticImageData}
             alt={alt || 'Image'}
             onError={handleError}
-            style={style}
             {...props}
         />
     );

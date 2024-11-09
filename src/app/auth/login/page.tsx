@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { ActionApi } from '@/library/utils';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
+import { OrganizeImage } from '@/components/common/image';
+import chat from "@/assets/images/chat.webp";
 
 export default function Page() {
     const { push } = useRouter();
@@ -26,27 +28,39 @@ export default function Page() {
     }
     return (
         <main className='w-full'>
-            <div className='xl:w-1/3 md:w-1/2 w-11/12 bg-gray-50 mx-auto px-5 py-10 rounded-2xl'>
-                <h1 className='text-black text-3xl font-semibold text-center mb-10'>ورود به چتکده</h1>
-                <form action={handler} className='grid grid-cols-4 gap-7 md:w-4/5 w-full mx-auto'>
+            <div className='xl:w-1/3 md:w-1/2 w-11/12 bg-gray-50 mx-auto md:px-10 md:pb-10 pb-5 px-5 rounded-2xl'>
+                <OrganizeImage
+                    alt='logo'
+                    height={150}
+                    src={chat}
+                    width={150}
+                    className='mx-auto'
+                />
+                <form action={handler} className='grid grid-cols-4 gap-5 md:w-4/5 w-full mx-auto'>
                     <Text
                         className='col-span-4 shadow-xl'
                         name='identifier'
                         title='نام کاربری یا ایمیل'
                         type='text'
-                        icon={<UserSquare size={22} color="#1d4ed8" />}
+                        icon={<UserSquare size={22} color="#394a6c" />}
                     />
                     <Text
                         className='col-span-4 shadow-xl'
                         name='password'
                         title='کلمه عبور'
                         type='password'
-                        icon={<PasswordCheck size={22} color="#1d4ed8" />}
+                        icon={<PasswordCheck size={22} color="#394a6c" />}
                     />
-                    <Link href='/auth/register' className='col-span-4 text-blue-700'>آیا حساب کاربری ندارید؟</Link>
+                    <div className='md:col-span-2 col-span-4'>
+                        <Link href='/auth/register'>
+                            <button className='bg-primary-200 text-white font-semibold h-10 rounded-lg w-full'>
+                                ثبت نام
+                            </button>
+                        </Link>
+                    </div>
                     <SubmitButton
-                        className='bg-blue-400 text-white font-semibold py-3 rounded-lg md:col-start-2 md:col-end-4 col-span-4 mt-14'
-                        text='تایید'
+                        className='bg-primary-100 text-white font-semibold h-10 rounded-lg md:col-span-2 col-span-4'
+                        text='ورود'
                     />
                 </form>
             </div>

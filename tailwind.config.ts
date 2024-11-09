@@ -10,14 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dark:{
-          background:'#17212B',
+        dark: {
+          background: '#17212B',
           primary: '#D5D4DF',
-          primary_2:'#2B5278'
+          primary_2: '#2B5278'
         },
-        background:'#fff',
-        primary: '#394A6C',
-        primary_2:'#419FD9'
+        background: '#fff',
+        primary: {
+          DEFAULT: '#394A6C',
+          50: '#419FD9',
+          100: '#2669e4',
+          200:'#A072E6'
+        }
       },
       container: {
         center: true,

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Chatkadeh',
     description: 'A space for communication',
     icons: [
-        { url: '/icons-logo.png' }
+        { url: '/icons-logo.webp' }
     ]
 }
 
